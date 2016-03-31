@@ -3,7 +3,7 @@
   $missing = array();
   //check if the form has been submitted
   if(isset($_POST['send'])) {
-	  $to = 'guillermo.cruces@bmwvecsa.com, baruch.luna@bmwvecsa.com, adriana.cazabal@bmwvecsa.com'; 
+	  $to = 'patricia.romano@bmwvecsa.com, baruch.luna@bmwvecsa.com, adriana.cazabal@bmwvecsa.com'; 
 	  $subject = 'Solicitud Evento Seminuevos';
 	  // list expected fields
 	  $expected = array('nombre', 'email', 'telefono', 'comments');
@@ -85,7 +85,7 @@
 				</ul>					
 			</div>
 			<section class="datos-agencia">				
-				<div class="titulo-seccion">Seminuevos Certificados &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; BMW y MINI Cooper &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 22, 23 y 24 de Enero.</div>
+				<div class="titulo-seccion">Seminuevos Certificados &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; BMW y MINI Cooper &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 15, 16 y 17 de Abril.</div>
 				<?php if(($_POST && $suspect) || ($_POST && isset($errors['mailfail']))){ ?>
 					<p class="warning">Su mensaje no pudo ser enviado, favor de intentar más tarde.</p>
 				<?php } 
