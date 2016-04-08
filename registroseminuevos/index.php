@@ -52,6 +52,31 @@
 		{
 		    padding-top: 1em;
 		}
+		.seminuevos-header
+		{
+			background: #FFF;
+			font-size: 1.1em;
+			margin-top: 2em;
+			margin-bottom: 1em;
+			/*padding: .6em 0;*/
+			width: 100%;
+		}
+		.semi-mini, .semi-bmw
+		{
+			padding: .3em 1em;
+			/*font-weight: bold;*/
+			color: #FFF;
+			font-size: 1.2em;
+			margin: .2em 0;
+		}
+		.semi-mini
+		{
+			background: #000;
+		}
+		.semi-bmw
+		{
+			background: #747675;
+		}
 
 	</style>
 </head>
@@ -91,7 +116,11 @@
 				</div>
 			</div>
 			<section class="datos-agencia">				
-				<div class="titulo-seccion">Seminuevos Certificados &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; BMW y MINI Cooper &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 15, 16 y 17 de Abril.</div>
+				<div class="seminuevos-header">
+					<p class="semi-bmw">BMW PREMIUM SELECTION. SEMINUEVOS CERTIFICADOS.</p>
+					<P class="semi-mini">MINI NEXT. SEMINUEVOS CERTIFICADOS.</P>
+					<!-- Seminuevos Certificados &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; BMW y MINI Cooper &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 15, 16 y 17 de Abril. -->
+				</div>
 				<?php if(($_POST && $suspect) || ($_POST && isset($errors['mailfail']))){ ?>
 					<p class="warning">Su mensaje no pudo ser enviado, favor de intentar más tarde.</p>
 				<?php } 
