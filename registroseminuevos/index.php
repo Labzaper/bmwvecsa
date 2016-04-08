@@ -6,15 +6,15 @@
 	  $to = 'patricia.romano@bmwvecsa.com, baruch.luna@bmwvecsa.com, adriana.cazabal@bmwvecsa.com'; 
 	  $subject = 'Solicitud Evento Seminuevos';
 	  // list expected fields
-	  $expected = array('nombre', 'email', 'telefono', 'comments');
+	  $expected = array('nombre', 'email', 'telefono', 'comments', 'fechaVisita', 'medioContacto');
 	  // set required fields
-	  $required = array('nombre', 'email', 'telefono');
+	  $required = array('nombre', 'email', 'telefono', 'fechaVisita', 'medioContacto');
 	  // set default values for variables that might no exist
 	  if(!isset($_POST['metodoContacto'])){
 		  $_POST['metodoContacto'] = '';
 	  }
 	  // create additional headers
-	  $headers = "From: Contacto Postventa<sistemas@bmwvecsa.com>\r\n";
+	  $headers = "From: Evento Seminuevos<sistemas@bmwvecsa.com>\r\n";
 	  $headers .= 'Content-Type: text/plain; charset=utf-8';	  
 	  require('../includes/processmail.inc.php');
 	  if($mailSent){
@@ -44,6 +44,15 @@
 			font-size: 1em;
 			margin: .8em 0;
 		}
+		.color-gris
+		{
+			color: #747675;
+		}
+		.padding-top-1
+		{
+		    padding-top: 1em;
+		}
+
 	</style>
 </head>
 <body>
@@ -72,17 +81,14 @@
 		</picture>
 		<div class="content">
 			<div class="side-fixed-menu">
-				<ul class="menu-agencia">
-					<li>
-						<a href="../promociones/index.php"><span class="icon-checkbox-checked"></span>Promociones Vecsa</a>
-					</li>
-					<li>
-						<a href="../agencias/puebla.php#menu-ventas"><span class="icon-checkbox-checked"></span>Ejecutivos de ventas</a>
-					</li>
-					<li>
-						<a href="../beneficios/index.php"><span class="icon-checkbox-checked"></span></span>Círculo Vecsa</a>
-					</li>
-				</ul>					
+				<div class="menu-agencia">
+					<h4 class="side-info">Vecsa sucursal Esteban de Antuñano.</h4>				
+					<p class="side-info">Domicilio: Boulevard Esteban de Antuñano #354.</p>
+					<p class="side-info">Col. José Abascal.</p>
+					<p class="side-info">Heroica Puebla de Zaragoza, Puebla.</p>
+					<p class="side-info">01 (222) 268.62.70</p>
+					<a href="https://www.google.com.mx/maps/place/BMW/@19.0822547,-98.2384886,20z/data=!4m2!3m1!1s0x0000000000000000:0x6641d050681f2de1" target="_blank" class="negrita"><span class="icon-location"></span>Ver mapa de ubicación</a>
+				</div>
 			</div>
 			<section class="datos-agencia">				
 				<div class="titulo-seccion">Seminuevos Certificados &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; BMW y MINI Cooper &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 15, 16 y 17 de Abril.</div>
@@ -93,9 +99,13 @@
 				<p class="warning">Favor de completar los campos requeridos:</p>
 				<?php } ?>
 				<form id="contacto" method="post" action="" accept-charset="UTF-8">
-					<p>Regístrese ahora y un representante lo contactará.</p>
-					<h5>Si vienes de otra ciudad, formalizando tu compra te reembolsamos tus viáticos.</h5>
-					<p><span class="negrita">&#149;</span> Campos obligatorios.</p>					
+					<h3>Lo invitamos a nuestra <span class="color-gris">VENTA ESPECIAL</span> de autos SEMINUEVOS CERTIFICADOS (BMW Premium Selection y MINI NEXT).</h3>
+					<p>Venga a conocer el inventario más grande y lujoso de la república. Extraordinarios beneficios y atractivos planes de financiamiento para usted.</p>
+					<h3 class="color-gris padding-top-1">Fecha: 15, 16 y 17 de abril 2016.</h3>
+					<p>Regístrese y reciba un beneficio extra en su cotización.</p>
+					<p class="padding-top-1">Si viene de otra ciudad, formalizando su compra le reembolsamos sus viáticos. (Aplican Restricciones)</p>
+					<p>Ubicación: Vecsa sucursal Esteban de Antuñano.</p>
+					<p class="padding-top-1"><span class="negrita">&#149;</span> Campos obligatorios.</p>					
 					<div class="envelope-icon">
 						<label class="icon-input" for="nombre"><i class="icon-user"></i></label>
 						<input placeholder="Nombre completo &nbsp;&#149;" name="nombre" id="nombre" required type="text"
@@ -131,10 +141,74 @@
 			                <span class="warning">Favor de introducir su teléfono de contacto.</span>
 			                <?php } ?>
 					</div>
-					<!-- <div class="envelope-icon">
-						<label class="icon-input" for="chasis"><i class="icon-info"></i></label>
-						<input placeholder="Número de serie. VIN &nbsp;&#149;" name="chasis" id="chasis" required type="text">
-					</div> -->
+					<!-- Fecha visita -->
+					<div class="envelope-icon">
+						<p>¿En que fecha nos visitará?</p>
+						<label class="icon-input" for="fechaVisita"><i class="icon-phone"></i></label>
+						<select name="fechaVisita" id="fechaVisita" required>
+							<option value=""
+								<?php if(!$_POST || $_POST['fechaVisita'] == '') {
+									echo 'selected';
+								} ?>
+							>Seleccionar
+							</option>
+							<option value="15"
+								<?php if($_POST && $_POST['fechaVisita'] == '15') {
+									echo 'selected';
+								} ?>
+							>15 de Abril</option>
+							<option value="16"
+								<?php if($_POST && $_POST['fechaVisita'] == '16') {
+									echo 'selected';
+								} ?>
+							>16 de Abril</option>
+							<option value="17"
+								<?php if($_POST && $_POST['fechaVisita'] == '17') {
+									echo 'selected';
+								} ?>
+							>17 de Abril</option>
+						</select>
+					</div>
+					<!-- Medio de contacto -->
+					<div class="envelope-icon">
+						<p>¿Cómo se enteró del evento?</p>
+						<label class="icon-input" for="medioContacto"><i class="icon-phone"></i></label>
+						<select name="medioContacto" id="medioContacto" required>
+							<option value=""
+								<?php if(!$_POST || $_POST['medioContacto'] == '') {
+									echo 'selected';
+								} ?>
+							>Seleccionar
+							</option>
+							<option value="Email"
+								<?php if($_POST && $_POST['medioContacto'] == 'Email') {
+									echo 'selected';
+								} ?>
+							>Email</option>
+							<option value="Radio"
+								<?php if($_POST && $_POST['medioContacto'] == 'Radio') {
+									echo 'selected';
+								} ?>
+							>Radio</option>
+							<option value="Facebook"
+								<?php if($_POST && $_POST['medioContacto'] == 'Facebook') {
+									echo 'selected';
+								} ?>
+							>Facebook</option>
+							<option value="Autoplaza"
+								<?php if($_POST && $_POST['medioContacto'] == 'Autoplaza') {
+									echo 'selected';
+								} ?>
+							>Autoplaza</option>
+							<option value="Otro"
+								<?php if($_POST && $_POST['medioContacto'] == 'Otro') {
+									echo 'selected';
+								} ?>
+							>Otro</option>
+						</select>
+					</div>
+
+					<!-- Comentarios -->
 					<label for="comments" class="label-comments">Comentarios:</label>
 					<textarea placeholder="Comentarios" name="comments" id="comments">
 							<?php if($missing || $errors){
@@ -143,7 +217,7 @@
 							<?php if($missing && in_array('comments',$missing)) { ?>
 			                <br />
 			                <span class="warning">Favor de introducir sus comentarios.</span>
-			                <?php } ?>
+			                <?php } ?>			        
 					<button type="submit" id="send" name="send">Enviar</button>
 
 					<p class="aviso-privacidad"><a href="../vecsa/legal.php" target="_blank">Consulta nuestro <strong>Aviso de Privacidad</strong>.</a></p>
